@@ -1,4 +1,5 @@
 import cv2 as cv
+import numpy as np
 
 
 def cartoonize_image(img):  # 입력 이미지를 Cartoon(만화) 스타일로 변환하는 함수
@@ -59,16 +60,18 @@ def main():
     # cartoon 변환 실행
     cartoon = cartoonize_image(img)
 
-    # 결과 출력: 원본 vs Cartoon 비교
-    cv.imshow('Original Image', img)
-    cv.imshow('Cartoon Image', cartoon)
+    # 원본 이미지와 결과 이미지를 가로로 나란히 이어 붙이기
+    combined_image = np.hstack((img, cartoon))
+
+    # 결과 출력: 원본 vs Cartoon 비교 (하나의 창에 병합된 이미지가 뜹니다)
+    cv.imshow('Original vs Cartoon', combined_image)
 
     print("아무 키를 눌러 종료하세요.")
     cv.waitKey(0)
     cv.destroyAllWindows()
 
     # 결과 저장
-    cv.imwrite(output_path, cartoon)
+    cv.imwrite(output_path, combined_image)
     print(f"저장 완료: {output_path}")
 
 
