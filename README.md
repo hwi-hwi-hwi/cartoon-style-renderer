@@ -57,8 +57,19 @@ cv2.bitwise_and(color, color, mask=edges)
 
 6. Bitwise AND 연산으로 단순화된 색상과 윤곽선을 합성하여 카툰 효과 완성
 
+## 🎯 알고리즘 선택 이유
+
+본 프로젝트에서는 만화 스타일의 핵심 요소인  
+색감 단순화(Flat Color)와 뚜렷한 외곽선(Bold Edge)을 효과적으로 구현하기 위해  
+
+- Bilateral Filter (색상 단순화)
+- Adaptive Threshold (외곽선 추출)
+
+을 결합한 알고리즘을 사용했습니다.
+
 ## 🖼️ 필터 결과 비교 (성공 vs 실패)
 아래 이미지들은 본 알고리즘을 적용한 카툰 필터 결과입니다. 피사체의 특성에 따른 결과물의 차이를 통해 필터의 한계를 확인할 수 있습니다.
+
 (왼쪽: 원본 / 오른쪽: Rendering 후)
 ### 🌟 1. 성공 데모: 주술회전 피규어 (고죠 사토루 / 게토 스구루)
 ![고죠_cartoon_result](https://github.com/user-attachments/assets/aa61bf24-1562-4b90-a572-4cf4e847107e)
@@ -66,7 +77,7 @@ cv2.bitwise_and(color, color, mask=edges)
 ![게토_cartoon_result](https://github.com/user-attachments/assets/e5356924-2de4-4ad8-8cc2-e9b4c089ed73)
 
 
-- 결과: 엣지가 뚜렷하고 색상 대비가 명확해 만화 스타일이 아주 잘 표현되었습니다.
+- 결과: 엣지가 뚜렷하고 색상 대비가 명확해 만화 스타일이 잘 표현됐습니다.
 
 - 이유: 애니메이션 피규어 특성상 표면이 매끄럽고 단색 위주로 구성되어 있어, Bilateral Filter의 색상 평탄화와 Adaptive Threshold의 펜선 추출이 아주 효과적으로 작동했습니다.
 
